@@ -1,0 +1,209 @@
+# Implementation Plan
+
+- [x] 1. Set up Three.js scene and core infrastructure
+
+  - [x] 1.1 Initialize Three.js scene with WebGL renderer
+    - Create scene, camera, and renderer
+    - Set spooky dark blue-purple background color
+    - Add fog for depth effect
+    - _Requirements: 1.1_
+  - [x] 1.2 Add OrbitControls for camera interaction
+    - Configure damping, min/max distance
+    - _Requirements: 1.3_
+  - [x] 1.3 Set up eerie lighting system
+    - Add purplish ambient light
+    - Add soft moonlight directional light
+    - Add rim light for atmosphere
+    - _Requirements: 1.4_
+  - [x] 1.4 Load and position floating house model
+    - Load GLB model using GLTFLoader
+    - Center and scale the model
+    - Add floating animation in render loop
+    - _Requirements: 1.2_
+
+- [x] 2. Implement weather particle systems
+
+  - [x] 2.1 Create clearAllWeather function
+    - Remove all particle systems
+    - Reset scene background and fog
+    - Reset lighting to defaults
+    - _Requirements: 2.1_
+  - [x] 2.2 Implement clear weather effect
+    - Slightly lighter background
+    - No particles
+    - _Requirements: 2.1_
+  - [x] 2.3 Implement cloudy weather effect
+    - Load and animate cloud models
+    - Scale clouds based on intensity
+    - _Requirements: 2.2_
+  - [x] 2.4 Implement rain weather effect
+    - Create rain particle system
+    - Add darker rain clouds
+    - Animate falling particles
+    - _Requirements: 2.3_
+  - [x] 2.5 Implement snow weather effect
+    - Create snow particle system
+    - Add horizontal drift animation
+    - _Requirements: 2.4_
+  - [x] 2.6 Implement fog weather effect
+    - Create volumetric fog particles
+    - Adjust scene fog density
+    - Apply greenish eerie lighting
+    - _Requirements: 2.5_
+  - [x] 2.7 Implement windy weather effect
+    - Create horizontal wind particles
+    - Animate particles moving across scene
+    - _Requirements: 2.6_
+
+- [x] 3. Implement lightning system for thunderstorms
+
+  - [x] 3.1 Create thunderstorm base effect
+    - Heavy rain particles
+    - Dark storm clouds
+    - _Requirements: 3.1_
+  - [x] 3.2 Implement lightning bolt geometry
+    - Create jagged line from sky to ground
+    - Add randomized segments for natural look
+    - Validate inputs to prevent NaN errors
+    - _Requirements: 3.2_
+  - [x] 3.3 Implement branching lightning
+    - Create branch bolts based on intensity
+    - Position branches along main bolt
+    - _Requirements: 3.3_
+  - [x] 3.4 Implement lightning flash effects
+    - Add PointLight at strike location
+    - Add HemisphereLight for ambient flash
+    - Implement fade animation
+    - _Requirements: 3.4, 3.5_
+  - [x] 3.5 Implement random strike timing
+    - Schedule strikes at random intervals
+    - Adjust frequency based on intensity
+    - _Requirements: 3.6_
+
+- [x] 4. Implement sound system
+
+  - [x] 4.1 Set up audio infrastructure
+    - Create Audio objects for each weather type
+    - Configure looping and default volume
+    - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
+  - [x] 4.2 Implement playWeatherSound function
+    - Stop other sounds when playing new one
+    - Adjust volume based on intensity
+    - Handle browser autoplay restrictions
+    - _Requirements: 4.6_
+  - [x] 4.3 Implement stopAllSounds function
+    - Pause and reset all audio
+    - Call for clear/cloudy weather
+    - _Requirements: 4.7_
+  - [x] 4.4 Add user interaction tracking
+    - Queue sounds until user interacts
+    - Play pending sound on first interaction
+    - _Requirements: 4.1_
+
+- [x] 5. Implement manual control panel
+
+  - [x] 5.1 Create weather type dropdown
+    - Options for all 7 weather types
+    - Event listener to change weather
+    - _Requirements: 5.1_
+  - [x] 5.2 Create intensity slider
+    - Range 0-100
+    - Real-time weather update on change
+    - _Requirements: 5.2_
+  - [x] 5.3 Add audio indicator
+    - Display current audio filename
+    - Update when sound changes
+    - _Requirements: 5.3_
+  - [x] 5.4 Implement panel minimize functionality
+    - Toggle panel content visibility
+    - Rotate minimize button arrow
+    - _Requirements: 5.4_
+
+- [x] 6. Implement location weather panel
+
+  - [x] 6.1 Create city search with autocomplete
+    - Input field with popular cities list
+    - Show suggestions on typing
+    - _Requirements: 6.1_
+  - [x] 6.2 Implement weather API integration
+    - Geocode city using Nominatim
+    - Fetch weather from Open-Meteo
+    - Map weather codes to effect types
+    - _Requirements: 6.2_
+  - [x] 6.3 Display weather information
+    - Show city name, temperature, humidity, wind
+    - _Requirements: 6.3_
+  - [x] 6.4 Apply API weather to scene
+    - Map conditions to weather types
+    - Calculate intensity from data
+    - Update UI controls to match
+    - _Requirements: 6.4_
+  - [x] 6.5 Implement manual override logic
+    - Set flag when user manually changes weather
+    - Reset flag on new city search
+    - _Requirements: 6.5_
+
+- [x] 7. Implement favorites system
+
+  - [x] 7.1 Add to favorites functionality
+    - Save city to localStorage
+    - Prevent duplicates
+    - _Requirements: 7.1_
+  - [x] 7.2 Populate favorites dropdown
+    - Load from localStorage on init
+    - Update after adding favorite
+    - _Requirements: 7.2_
+  - [x] 7.3 Select favorite city
+    - Fetch weather on selection
+    - _Requirements: 7.3_
+
+- [x] 8. Implement navigation bar
+
+  - [x] 8.1 Create bottom navigation layout
+    - App branding/logo
+    - Home and About buttons
+    - _Requirements: 8.1, 8.2_
+  - [x] 8.2 Implement Home button
+    - Reset camera to initial position
+    - Reset OrbitControls target
+    - _Requirements: 8.1_
+  - [x] 8.3 Implement About modal
+    - Show/hide on button click
+    - Display app description
+    - Include audio credits
+    - Close on outside click or button
+    - _Requirements: 8.2, 8.3, 8.4_
+
+- [x] 9. Apply spooky theme styling
+
+  - [x] 9.1 Add custom font
+    - Load "October Crow" font
+    - Apply to body
+    - _Requirements: 9.1_
+  - [x] 9.2 Style buttons with SVG backgrounds
+    - Custom shape using inline SVG
+    - Dark red default, bright red hover
+    - _Requirements: 9.2, 9.3_
+  - [x] 9.3 Style panels
+    - Semi-transparent dark backgrounds
+    - Backdrop blur effect
+    - Consistent 12px gap between panels
+    - _Requirements: 9.4_
+
+- [x] 10. Final integration and polish
+  - [x] 10.1 Wire up all event listeners
+    - Weather select change
+    - Intensity slider input
+    - Search button click
+    - Favorites dropdown change
+    - Navigation buttons
+    - _Requirements: 5.1, 5.2, 6.2, 7.3, 8.1, 8.2_
+  - [x] 10.2 Initialize default state
+    - Set rain as default weather
+    - Update favorites dropdown
+    - Start animation loop
+    - _Requirements: 2.3, 7.2_
+  - [x] 10.3 Handle window resize
+    - Update camera aspect ratio
+    - Resize renderer
+    - _Requirements: 1.1_

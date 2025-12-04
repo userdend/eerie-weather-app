@@ -69,7 +69,7 @@ loader.load("models/forest_house.glb", (gltf) => {
 
 // Weather System
 let currentWeather = null;
-let weatherIntensity = 50;
+let weatherIntensity = 24;
 
 // Weather objects
 let rainParticles = null;
@@ -162,6 +162,11 @@ function playWeatherSound(weatherType, intensity) {
   sound.volume = 0.3 + (intensity / 100) * 0.5;
   currentSound = sound;
   currentWeatherSound = weatherType;
+
+  // Skip first 2 seconds for thunderstorm audio
+  if (weatherType === "thunderstorm") {
+    sound.currentTime = 5;
+  }
 
   // Update audio indicator
   const audioNameEl = document.getElementById("audio-name");
@@ -569,8 +574,9 @@ function createLightningStrike(intensity) {
   };
 
   // Schedule next strike (random interval for unpredictability)
-  const minInterval = 800 - (intensity / 100) * 400;
-  const maxInterval = 4000 - (intensity / 100) * 2000;
+  const frequencyBoost = 0.25; // 0.5 = twice as frequent, 0.25 = 4× frequent
+  const minInterval = (800 - (intensity / 100) * 400) * frequencyBoost;
+  const maxInterval = (4000 - (intensity / 100) * 2000) * frequencyBoost;
   nextStrikeTime =
     Date.now() + minInterval + Math.random() * (maxInterval - minInterval);
 }
@@ -1094,7 +1100,7 @@ intensitySlider.addEventListener("input", (e) => {
 
 // Initialize
 updateFavoritesDropdown();
-setWeather("rain", 50);
+setWeather("rain", 24);
 
 // Animation loop
 function animate() {

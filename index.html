@@ -91,6 +91,7 @@
         border: none;
         font-size: 14px;
         box-sizing: border-box;
+        font-family: inherit;
       }
       #search-btn {
         width: 100%;
@@ -105,6 +106,7 @@
         font-size: 14px;
         cursor: pointer;
         font-weight: bold;
+        font-family: inherit;
       }
       #search-btn:hover {
         background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 180"><path d="M974.6 145.6a177.7 177.7 0 0 1 0-111.2 10 10 0 0 0-10.3-13c-142.6 11.5-786 11.5-928.6 0a10 10 0 0 0-10.3 13 177.6 177.6 0 0 1 0 111.2 10 10 0 0 0 10.3 13c142.7-11.5 786-11.5 928.6 0a10 10 0 0 0 10.3-13Z" fill="%23f4320b"></path></svg>');
@@ -159,6 +161,7 @@
         font-size: 14px;
         cursor: pointer;
         font-weight: bold;
+        font-family: inherit;
       }
       #add-favorite-btn:hover {
         background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 180"><path d="M974.6 145.6a177.7 177.7 0 0 1 0-111.2 10 10 0 0 0-10.3-13c-142.6 11.5-786 11.5-928.6 0a10 10 0 0 0-10.3 13 177.6 177.6 0 0 1 0 111.2 10 10 0 0 0 10.3 13c142.7-11.5 786-11.5 928.6 0a10 10 0 0 0 10.3-13Z" fill="%23f4320b"></path></svg>');
@@ -179,6 +182,7 @@
         background: rgba(255, 255, 255, 0.9);
         font-size: 14px;
         cursor: pointer;
+        font-family: inherit;
       }
 
       /* Weather Control Panel */
@@ -214,6 +218,7 @@
         background: rgba(255, 255, 255, 0.9);
         font-size: 14px;
         cursor: pointer;
+        font-family: inherit;
       }
       .slider-container {
         margin-top: 15px;
@@ -290,10 +295,35 @@
         font-size: 14px;
         cursor: pointer;
         transition: transform 0.1s;
+        font-family: inherit;
       }
       #nav-bar button:hover {
         background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 180"><path d="M974.6 145.6a177.7 177.7 0 0 1 0-111.2 10 10 0 0 0-10.3-13c-142.6 11.5-786 11.5-928.6 0a10 10 0 0 0-10.3 13 177.6 177.6 0 0 1 0 111.2 10 10 0 0 0 10.3 13c142.7-11.5 786-11.5 928.6 0a10 10 0 0 0 10.3-13Z" fill="%23f4320b"></path></svg>');
         transform: translateY(-2px);
+      }
+      .nav-icon {
+        width: 18px;
+        height: 18px;
+        vertical-align: middle;
+        margin-right: 6px;
+      }
+      .panel-icon {
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+        margin-right: 6px;
+      }
+      .btn-icon {
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
+        margin-right: 4px;
+      }
+      .logo-icon {
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+        margin-right: 8px;
       }
 
       /* About Modal */
@@ -360,12 +390,13 @@
         color: white;
         font-size: 14px;
         cursor: pointer;
+        font-family: inherit;
       }
       #about-content .close-btn:hover {
         background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 180"><path d="M974.6 145.6a177.7 177.7 0 0 1 0-111.2 10 10 0 0 0-10.3-13c-142.6 11.5-786 11.5-928.6 0a10 10 0 0 0-10.3 13 177.6 177.6 0 0 1 0 111.2 10 10 0 0 0 10.3 13c142.7-11.5 786-11.5 928.6 0a10 10 0 0 0 10.3-13Z" fill="%23f4320b"></path></svg>');
       }
     </style>
-    <script type="module" crossorigin src="/eerie-weather-app/assets/index-Cl1L-vjQ.js"></script>
+    <script type="module" crossorigin src="/eerie-weather-app/assets/index-UHo_wDrC.js"></script>
   </head>
   <body>
     <!-- Panels Container -->
@@ -373,7 +404,10 @@
       <!-- Weather Control Panel -->
       <div id="weather-panel">
         <div class="panel-header" onclick="togglePanel('weather-panel')">
-          <h3>⚙️ Manual Control</h3>
+          <h3>
+            <img src="icons/manual-control.png" alt="" class="panel-icon" />
+            Manual Control
+          </h3>
           <button class="minimize-btn">▼</button>
         </div>
         <div class="panel-content">
@@ -389,14 +423,14 @@
           <div class="slider-container">
             <label>
               Intensity:
-              <span class="slider-value" id="intensity-value">50</span>
+              <span class="slider-value" id="intensity-value">24</span>
             </label>
             <input
               type="range"
               id="intensity-slider"
               min="0"
               max="100"
-              value="50"
+              value="24"
             />
           </div>
           <div class="audio-indicator">
@@ -408,7 +442,10 @@
       <!-- Location Search Panel -->
       <div id="location-panel">
         <div class="panel-header" onclick="togglePanel('location-panel')">
-          <h3>🌍 Location Weather</h3>
+          <h3>
+            <img src="icons/weather-location.png" alt="" class="panel-icon" />
+            Location Weather
+          </h3>
           <button class="minimize-btn">▼</button>
         </div>
         <div class="panel-content">
@@ -424,7 +461,10 @@
             <p id="temperature"></p>
             <p id="humidity"></p>
             <p id="wind-speed"></p>
-            <button id="add-favorite-btn">⭐ Add to Favorites</button>
+            <button id="add-favorite-btn">
+              <img src="icons/favourite.png" alt="" class="btn-icon" /> Add to
+              Favorites
+            </button>
           </div>
 
           <div class="favorites-container">
@@ -441,10 +481,17 @@
 
     <!-- Bottom Navigation Bar -->
     <nav id="nav-bar">
-      <span class="logo">🌩️ Eerie Weather App</span>
+      <span class="logo"
+        ><img src="icons/logo.png" alt="" class="logo-icon" /> Eerie Weather
+        App</span
+      >
       <div class="nav-buttons">
-        <button id="home-btn">🏠 Home</button>
-        <button id="about-btn">ℹ️ About</button>
+        <button id="home-btn">
+          <img src="icons/home.png" alt="Home" class="nav-icon" /> Home
+        </button>
+        <button id="about-btn">
+          <img src="icons/about.png" alt="About" class="nav-icon" /> About
+        </button>
       </div>
     </nav>
 

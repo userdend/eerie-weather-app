@@ -1,0 +1,13 @@
+{
+  "name": "Documentation Sync",
+  "description": "Suggests documentation updates when code changes are saved",
+  "enabled": true,
+  "trigger": {
+    "type": "onFileSave",
+    "filePattern": "{main.js,index.html}"
+  },
+  "action": {
+    "type": "sendMessage",
+    "message": "I just saved changes to ${filePath}. Please review the changes and suggest updates to README.md and BLOG_POST.md to keep documentation in sync. Focus on:\n\n1. New features or weather effects added\n2. Changed UI components or controls\n3. Modified API integrations or data handling\n4. Updated dependencies or configuration\n5. New challenges or implementation details worth documenting\n\nBe concise and only suggest changes if there are meaningful updates to document."
+  }
+}
